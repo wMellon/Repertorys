@@ -109,9 +109,10 @@
 
 
 -(void)setupByDict:(NSDictionary*)item value:(NSString*)value{
-    NSObject<FormCellModelProtocol> *obj = [NSObject<FormCellModelProtocol> yy_modelWithJSON:item];
-    obj.value = value;
-    [self setupModel:obj];
+    _key = item[@"key"];
+    _titleLabel.text = item[@"title"];
+    _textField.placeholder = item[@"placeholder"];
+    _textField.text = value;
 }
 
 @end

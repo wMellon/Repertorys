@@ -103,10 +103,21 @@
     }
 }
 
--(void)setupDict:(NSDictionary*)dict value:(NSString*)value{
-    NSObject<FormCellModelProtocol> *obj = [NSObject<FormCellModelProtocol> yy_modelWithJSON:dict];
-    obj.value = value;
-    [self setupModel:obj];
+-(void)setupDict:(NSDictionary*)item value:(NSString*)value{
+    _key = item[@"key"];
+    _titleLabel.text = item[@"title"];
+    _textField.placeholder = item[@"placeholder"];
+    _textField.text = value;
+    _unitLabel.text = item[@"unit"];
+    if(value.length <= 0){
+        _textField.sd_layout.widthIs(100);
+        _textField.text = @"";
+        _unitLabel.hidden = YES;
+    }else{
+        _textField.sd_layout.widthIs(44);
+        _textField.text = value;
+        _unitLabel.hidden = NO;
+    }
 }
 
 @end

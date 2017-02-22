@@ -28,8 +28,8 @@
 /**
  设置值
 
- @param dict 字典，key至少带有：key,title,placeholder,value,unit这些
+ @param item 字典，key至少带有：key,title,placeholder,value,unit这些
  @param value 值
  */
--(void)setupDict:(NSDictionary*)dict value:(NSString*)value;
+-(void)setupDict:(NSDictionary*)item value:(NSString*)value;
 @end
