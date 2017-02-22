@@ -1,0 +1,15 @@
+PODS:
+  - SDAutoLayout (2.1.7)
+  - YYModel (1.0.4)
+
+DEPENDENCIES:
+  - SDAutoLayout (~> 2.1.4)
+  - YYModel
+
+SPEC CHECKSUMS:
+  SDAutoLayout: e9b36d04b8c0b504762a04d76fbbe5108944297a
+  YYModel: 2a7fdd96aaa4b86a824e26d0c517de8928c04b30
+
+PODFILE CHECKSUM: da235f8512651bfe71a5413954ec5d7d71ec8b52
+
+COCOAPODS: 1.2.0
