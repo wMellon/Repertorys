@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		280728E51E6562B7001563F8 /* NSCalendar+Distance.m in Sources */ = {isa = PBXBuildFile; fileRef = 280728E41E6562B7001563F8 /* NSCalendar+Distance.m */; };
 		28FEB11F1E5D2E1B0028615C /* FormTextFieldUnitCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 28FEB11E1E5D2E1B0028615C /* FormTextFieldUnitCell.m */; };
 		DA0F58D79126088EA8F12F21 /* libPods-Repertorys.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 31F931E299182346B29BA367 /* libPods-Repertorys.a */; };
 		F12FA6CF1DBD9CE1005A5101 /* RealNameIDCardNoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F12FA6CE1DBD9CE1005A5101 /* RealNameIDCardNoView.xib */; };
@@ -30,6 +31,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		280728E31E6562B7001563F8 /* NSCalendar+Distance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSCalendar+Distance.h"; sourceTree = "<group>"; };
+		280728E41E6562B7001563F8 /* NSCalendar+Distance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSCalendar+Distance.m"; sourceTree = "<group>"; };
 		28FEB11B1E5D2E1B0028615C /* FormCellDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FormCellDelegate.h; sourceTree = "<group>"; };
 		28FEB11C1E5D2E1B0028615C /* FormCellModelProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FormCellModelProtocol.h; sourceTree = "<group>"; };
 		28FEB11D1E5D2E1B0028615C /* FormTextFieldUnitCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FormTextFieldUnitCell.h; sourceTree = "<group>"; };
@@ -82,6 +85,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		280728E21E6562B7001563F8 /* NSCalendar */ = {
+			isa = PBXGroup;
+			children = (
+				280728E31E6562B7001563F8 /* NSCalendar+Distance.h */,
+				280728E41E6562B7001563F8 /* NSCalendar+Distance.m */,
+			);
+			path = NSCalendar;
+			sourceTree = "<group>";
+		};
 		6067BFA5FC3D711715A7EFC8 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -183,6 +195,7 @@
 		F19AD6A51DC63E9700B159A7 /* Category */ = {
 			isa = PBXGroup;
 			children = (
+				280728E21E6562B7001563F8 /* NSCalendar */,
 				F19AD6A61DC63E9700B159A7 /* UIView */,
 			);
 			path = Category;
@@ -358,6 +371,7 @@
 				F17F87FE1DBAFAD000A1CFE8 /* main.m in Sources */,
 				F1CCF7BD1DBF950F006EF766 /* ImageTextMsgCell.m in Sources */,
 				F17F881C1DBAFC5700A1CFE8 /* CURFormTableViewController.m in Sources */,
+				280728E51E6562B7001563F8 /* NSCalendar+Distance.m in Sources */,
 				F1CCF7BE1DBF950F006EF766 /* TextMsgCell.m in Sources */,
 				F17F88161DBAFAF300A1CFE8 /* FormTextFieldCell.m in Sources */,
 				F19AD6A41DC63DB500B159A7 /* OperableMsgCell.m in Sources */,
