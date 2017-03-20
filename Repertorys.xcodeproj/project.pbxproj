@@ -88,12 +88,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		280728E21E6562B7001563F8 /* NSCalendar */ = {
+		280728E21E6562B7001563F8 /* NSDate */ = {
 			isa = PBXGroup;
 			children = (
-				280728E31E6562B7001563F8 /* NSCalendar+Distance.h */,
-				280728E41E6562B7001563F8 /* NSCalendar+Distance.m */,
+				280728E31E6562B7001563F8 /* NSDate+Distance.h */,
+				280728E41E6562B7001563F8 /* NSDate+Distance.m */,
 			);
+			name = NSDate;
 			path = NSCalendar;
 			sourceTree = "<group>";
 		};
@@ -200,7 +201,7 @@
 		F19AD6A51DC63E9700B159A7 /* Category */ = {
 			isa = PBXGroup;
 			children = (
-				280728E21E6562B7001563F8 /* NSCalendar */,
+				280728E21E6562B7001563F8 /* NSDate */,
 				F19AD6A61DC63E9700B159A7 /* UIView */,
 			);
 			path = Category;
@@ -376,7 +377,7 @@
 				F17F87FE1DBAFAD000A1CFE8 /* main.m in Sources */,
 				F1CCF7BD1DBF950F006EF766 /* ImageTextMsgCell.m in Sources */,
 				F17F881C1DBAFC5700A1CFE8 /* CURFormTableViewController.m in Sources */,
-				280728E51E6562B7001563F8 /* NSCalendar+Distance.m in Sources */,
+				280728E51E6562B7001563F8 /* NSDate+Distance.m in Sources */,
 				F1CCF7BE1DBF950F006EF766 /* TextMsgCell.m in Sources */,
 				28EEDB131E7FA69B00C7C229 /* NSMutableDictionary+Weak.m in Sources */,
 				F17F88161DBAFAF300A1CFE8 /* FormTextFieldCell.m in Sources */,
