@@ -42,7 +42,7 @@
     _textField = [[UITextField alloc] init];
     _textField.font = [UIFont systemFontOfSize:14];
     _textField.delegate = self;
-    [_textField addTarget:self  action:@selector(valueChanged)  forControlEvents:UIControlEventAllEditingEvents];
+    [_textField addTarget:self  action:@selector(valueChanged:)  forControlEvents:UIControlEventAllEditingEvents];
     [self.contentView addSubview:_textField];
 }
 
@@ -94,9 +94,9 @@
     }
 }
 
--(void)valueChanged{
-    if([self.delegate respondsToSelector:@selector(textFieldChange:key:)]){
-        [self.delegate textFieldChange:_textField.text key:_key];
+-(void)valueChanged:(id)sender{
+    if([self.delegate respondsToSelector:@selector(textFieldChange:key:textField:)]){
+        [self.delegate textFieldChange:_textField.text key:_key textField:self.textField];
     }
 }
 
