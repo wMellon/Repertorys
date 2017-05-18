@@ -11,6 +11,7 @@
 @interface FormTextFieldCell ()<UITextFieldDelegate>
 
 @property (copy, nonatomic) NSString *key;
+@property (assign, nonatomic) NSInteger oldLength;
 
 @end
 
@@ -41,8 +42,7 @@
     
     _textField = [[UITextField alloc] init];
     _textField.font = [UIFont systemFontOfSize:14];
-    _textField.delegate = self;
-    [_textField addTarget:self  action:@selector(valueChanged:)  forControlEvents:UIControlEventAllEditingEvents];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(valueChanged) name:@"UITextFieldTextDidChangeNotification" object:nil];
     [self.contentView addSubview:_textField];
 }
 
@@ -72,30 +72,40 @@
     [_textField updateLayout];
 }
 
-#pragma mark - UITextFieldDelegate
-
-//控制长度，当按下的是删除键时，不会触发？
-- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
-    //删除时会不会调??????
+-(void)valueChanged{
+    //控制长度
+    NSInteger errorCode = 0;
     if([self.delegate respondsToSelector:@selector(textFieldMaxLengthWithKey:)]){
         NSInteger maxLength = [self.delegate textFieldMaxLengthWithKey:_key];
         if(maxLength != 0){
-            NSString *content = [NSString stringWithFormat:@"%@%@", textField.text, string];
-            if(content.length > maxLength){
-                return NO;
+            NSString *content = _textField.text;
+            NSString *lang = [[UITextInputMode currentInputMode] primaryLanguage];
+            if ([lang isEqualToString:@"zh-Hans"]) {
+                // 简体中文输入，包括简体拼音，健体五笔，简体手写
+                //获取高亮部分
+                UITextRange *selectedRange = [_textField markedTextRange];
+                UITextPosition *position = [_textField positionFromPosition:selectedRange.start offset:0];
+                if(!position){
+                    if([_textField.text dataUsingEncoding:CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingGB_18030_2000)].length > maxLength){
+                        _textField.text = [_textField.text substringToIndex:self.oldLength];
+                        errorCode = FormCellLengthError;
+                    }else{
+                        self.oldLength = _textField.text.length;
+                    }
+                }
             }else{
-                return YES;
+                if([_textField.text dataUsingEncoding:CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingGB_18030_2000)].length > maxLength){
+                    _textField.text = [_textField.text substringToIndex:self.oldLength];
+                    errorCode = FormCellLengthError;
+                }else{
+                    self.oldLength = _textField.text.length;
+                }
             }
-        }else{
-            return YES;
         }
-    }else{
-        return YES;
     }
-}
-
--(void)valueChanged:(id)sender{
-    if([self.delegate respondsToSelector:@selector(textFieldChange:key:textField:)]){
+    if([self.delegate respondsToSelector:@selector(textFieldChange:key:textField:errorCode:)]){
+        [self.delegate textFieldChange:_textField.text key:_key textField:self.textField errorCode:errorCode];
+    }else if([self.delegate respondsToSelector:@selector(textFieldChange:key:textField:)]){
         [self.delegate textFieldChange:_textField.text key:_key textField:self.textField];
     }
 }
