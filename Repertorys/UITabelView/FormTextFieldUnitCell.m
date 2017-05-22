@@ -42,8 +42,8 @@
     
     self.textField = [[UITextField alloc] init];
     self.textField.font = [UIFont systemFontOfSize:14];
-    self.textField.delegate = self;
-    [self.textField addTarget:self action:@selector(valueChanged:)  forControlEvents:UIControlEventAllEditingEvents];
+    //如果可以用rac的监听更好，因为这种方式代码赋值的时候是监听不到的
+    [self.textField addTarget:self action:@selector(valueChanged)  forControlEvents:UIControlEventAllEditingEvents];
     [self.contentView addSubview:self.textField];
     
     _unitLabel = [[UILabel alloc] init];
@@ -72,18 +72,19 @@
     .widthIs(21);
 }
 
--(void)valueChanged:(id)sender{
-    if([self.delegate respondsToSelector:@selector(textFieldChange:key:textField:)]){
+-(void)valueChanged{
+    if([self.delegate respondsToSelector:@selector(textFieldChange:key:textField:errorCode:)]){
+        [self.delegate textFieldChange:_textField.text key:_key textField:self.textField errorCode:0];
+    }else if([self.delegate respondsToSelector:@selector(textFieldChange:key:textField:)]){
         [self.delegate textFieldChange:_textField.text key:_key textField:self.textField];
-        if(_textField.text.length <= 0){
-            self.textField.sd_layout.widthIs(100);
-            _unitLabel.hidden = YES;
-        }else{
-            self.textField.sd_layout.widthIs(44);
-            _unitLabel.hidden = NO;
-        }
     }
-    
+    if(_textField.text.length <= 0){
+        self.textField.sd_layout.widthIs(100);
+        _unitLabel.hidden = YES;
+    }else{
+        self.textField.sd_layout.widthIs(44);
+        _unitLabel.hidden = NO;
+    }
 }
 
 -(void)setupModel:(NSObject<FormCellModelProtocol>*)model{

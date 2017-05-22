@@ -42,7 +42,8 @@
     
     _textField = [[UITextField alloc] init];
     _textField.font = [UIFont systemFontOfSize:14];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(valueChanged) name:@"UITextFieldTextDidChangeNotification" object:nil];
+    //如果可以用rac的监听更好，因为这种方式代码赋值的时候是监听不到的
+    [_textField addTarget:self action:@selector(valueChanged) forControlEvents:UIControlEventAllEditingEvents];
     [self.contentView addSubview:_textField];
 }
 
@@ -78,7 +79,6 @@
     if([self.delegate respondsToSelector:@selector(textFieldMaxLengthWithKey:)]){
         NSInteger maxLength = [self.delegate textFieldMaxLengthWithKey:_key];
         if(maxLength != 0){
-            NSString *content = _textField.text;
             NSString *lang = [[UITextInputMode currentInputMode] primaryLanguage];
             if ([lang isEqualToString:@"zh-Hans"]) {
                 // 简体中文输入，包括简体拼音，健体五笔，简体手写
