@@ -92,6 +92,9 @@
                     }else{
                         self.oldLength = _textField.text.length;
                     }
+                }else{
+                    //在高亮模式下，先不要回调
+                    return;
                 }
             }else{
                 if([_textField.text dataUsingEncoding:CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingGB_18030_2000)].length > maxLength){
